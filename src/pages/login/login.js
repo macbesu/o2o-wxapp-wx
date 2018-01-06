@@ -26,7 +26,11 @@ Page({
   },
   confirmLogin: function() {
     const self = this;
-    console.log(URL + 'users/login');
+    wx.showToast({
+      title: '数据加载中',
+      icon: 'loading',
+      duration: 3000,
+    });
     wx.request({
       url: URL + 'users/login',
       method: 'POST',
@@ -35,18 +39,26 @@ Page({
         password: self.data.password,
       },
       success: function(res) {
-        wx.setStorage({
-          key: "appUser",
-          data: {
-            user_id: res.data._id,
-            token: res.data.token,
-          },
+        wx.showToast({
+          title: '登录成功',
+          icon: 'success',
+          duration: 3000,
           success: function() {
-            wx.switchTab({
-              url: '/pages/home/home'
+            wx.setStorage({
+              key: "appUser",
+              data: {
+                user_id: res.data._id,
+                token: res.data.token,
+              },
+              success: function() {
+                wx.switchTab({
+                  url: '/pages/home/home'
+                });
+              },
             });
-          },
+          }
         });
+        
       },
       fail: function(e) {
         console.error(e);
