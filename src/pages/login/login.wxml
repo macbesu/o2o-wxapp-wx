@@ -1,4 +1,4 @@
-<view>
+<view wx:if="{{isLogged}}">
   <view class="line-image">
     <image src="../../assets/logo.png"></image>
   </view>
@@ -19,6 +19,9 @@
             <input class="weui-input" type="password" placeholder="请输入密码" bindinput="changePassword" />
         </view>
     </view>
+  </view>
+  <view class="weui-cells__title" style="color:#f00;" wx:if="{{showErrorText}}">
+    登录失败！
   </view>
   <view class="weui-btn-area">
     <button class="weui-btn" type="primary" bindtap="confirmLogin">登录</button>

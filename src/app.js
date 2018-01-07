@@ -11,12 +11,11 @@ App({
     wx.getStorage({ // 获取登录wxapp信息
       key: 'appUser',
       success: function(res) {
-        console.log(res.data);
+        wx.switchTab({
+          url: '/pages/home/home'
+        });
       },
       fail: function(e) {
-        // wx.switchTab({
-        //   url: '/pages/users/users'
-        // });
       },
     });
     

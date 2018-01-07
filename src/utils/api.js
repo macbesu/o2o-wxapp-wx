@@ -1,4 +1,4 @@
-const SERVER = 'http://127.0.0.1:3000/';
+const SERVER = 'http://192.168.199.151:3000/';
 const PREFIX = 'api/v1/';
 const URL = SERVER + PREFIX;
 

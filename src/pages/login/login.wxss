@@ -1,6 +1,6 @@
 .line-image {
   width: 60%;
-  margin: 120rpx auto 120rpx;
+  margin: 60rpx auto 60rpx;
 }
 .line-image image {
   width: 100%;
