@@ -17,7 +17,7 @@
       <view class="weui-cell__ft weui-cell__ft_in-access">{{phone}}</view>
     </navigator>
     <navigator 
-      url="/pages/users/item/item?type=text&label=密码&_id={{_id}}&key=password&val=" 
+      url="/pages/users/item/item?type=password&label=密码&_id={{_id}}&key=password&val=" 
       class="weui-cell weui-cell_access" 
       hover-class="weui-cell_active"
     >

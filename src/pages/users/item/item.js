@@ -9,7 +9,9 @@ Page({
     label: "",
     key: "",
     val: "",
+    valAgain: "",
     token: "",
+    errorText: "修改失败！",
     showErrorText: false,
   },
   onLoad: function (options) {
@@ -29,9 +31,35 @@ Page({
     })
   },
   changeValue: function(val) {
-    this.setData({ val: val.detail.value });
+    this.setData({ 
+      val: val.detail.value,
+      errorText: "修改失败！",
+      showErrorText: false,
+    });
+  },
+  changeValueAgain: function(val) {
+    this.setData({ 
+      valAgain: val.detail.value,
+      errorText: "修改失败！",
+      showErrorText: false,
+    });
   },
   confirm: function() {
+    if (this.data.type === 'password') {
+      if (this.data.valAgain === this.data.val) {
+        this.updateData();
+      } else {
+        this.setData({
+          errorText: '两次输入的密码不一致！',
+          showErrorText: true,
+        });
+      }
+    }
+    if (this.data.type !== 'password') {
+      this.updateData();
+    }
+  },
+  updateData: function() {
     const obj = {};
     const self = this;
     obj[self.data.key] = self.data.val;
@@ -43,16 +71,22 @@ Page({
       },
       data: obj,
       success: function(res) {
-        wx.showToast({
-          title: '修改成功！',
-          icon: 'success',
-          duration: 2000,
-          success: function() {
-            wx.switchTab({
-              url: '/pages/users/list/list'
-            });
-          }
-        });
+        if (res.statusCode === 200) {
+          wx.showToast({
+            title: '修改成功！',
+            icon: 'success',
+            duration: 2000,
+            success: function() {
+              wx.switchTab({
+                url: '/pages/users/list/list'
+              });
+            }
+          });
+        } else {
+          self.setData({ 
+            showErrorText: true,
+          });
+        }
       },
       fail: function(e) {
         self.setData({ 

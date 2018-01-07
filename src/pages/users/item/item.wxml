@@ -1,6 +1,6 @@
 <view >
-  <view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell weui-cell_input" wx:if="{{type === 'text'}}">
+  <view class="weui-cells weui-cells_after-title" wx:if="{{type === 'text'}}">
+    <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
         <view class="weui-label">{{label}}</view>
       </view>
@@ -8,7 +8,29 @@
         <input class="weui-input" placeholder="请输入{{label}}" value="{{val}}" bindinput="changeValue" />
       </view>
     </view>
-    <view class="weui-cell weui-cell_input" wx:if="{{type === 'date'}}">
+  </view>
+
+  <view class="weui-cells weui-cells_after-title" wx:if="{{type === 'password'}}">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">新{{label}}</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入新{{label}}" type="password" value="{{val}}" bindinput="changeValue" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">确认{{label}}</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请再次输入{{label}}" type="password" value="{{valAgain}}" bindinput="changeValueAgain" />
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells weui-cells_after-title" wx:if="{{type === 'date'}}">
+    <view class="weui-cell weui-cell_input" >
       <view class="weui-cell__hd">
         <view class="weui-label">生日</view>
       </view>
@@ -19,8 +41,13 @@
       </view>
     </view>
   </view>
+
+  <view class="weui-cells__title" wx:if="{{type === 'password'}}">
+    密码必须长于6位且包含大写、小写、数字！
+  </view>
+
   <view class="weui-cells__title" style="color:#f00;" wx:if="{{showErrorText}}">
-    修改失败！
+    {{ errorText }}
   </view>
   <view class="weui-btn-area">
     <button class="weui-btn" type="primary" bindtap="confirm">完成</button>
