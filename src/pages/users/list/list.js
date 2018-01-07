@@ -1,5 +1,10 @@
+const { URL } = require('../../../utils/api');
+
+const app = getApp();
+
 Page({
   data: {
+    _id: "",
     fullName: "",
     phone: "",
     password: "****************",
@@ -8,7 +13,7 @@ Page({
     addressShort: "",
     birthday: "",
   },
-  onLoad: function () {
+  onShow: function () {
     this.fetchData();
   },
   fetchData: function() {
@@ -20,38 +25,32 @@ Page({
     wx.getStorage({
       key: 'appUser',
       success: function(res) {
-        self.setData({
-          fullName: res.data.fullName,
-          phone: res.data.phone,
-          password: res.data.password,
-          email: res.data.email,
-          address: res.data.address,
-          addressShort: res.data.address.length > 12 ? res.data.address.substr(0, 12) + '...' : res.data.address,
-          birthday: res.data.birthday,
+        const { _id, token } = res.data;
+        wx.request({
+          url: URL + 'users/id=' + _id,
+          method: 'GET',
+          header: {
+            'Authorization': token,
+          },
+          success: function(res) {
+            self.setData({
+              _id: res.data._id,
+              fullName: res.data.fullName,
+              phone: res.data.phone,
+              password: res.data.password,
+              email: res.data.email,
+              address: res.data.address,
+              addressShort: res.data.address.length > 12 ? res.data.address.substr(0, 12) + '...' : res.data.address,
+              birthday: res.data.birthday,
+            });
+            wx.hideLoading();
+          },
+          fail: function(e) {
+            wx.hideLoading();
+          },
         });
-        wx.hideLoading();
       },
-      fail: function(e) {
-        wx.hideLoading();
-      },
-    });
-  },
-  changeFullName: function(val) {
-    this.setData({ fullName: val.detail.value });
-  },
-  changePhone: function(val) {
-    this.setData({ phone: val.detail.value });
-  },
-  changePassword: function(val) {
-    this.setData({ password: val.detail.value });
-  },
-  changeEmail: function(val) {
-    this.setData({ email: val.detail.value });
-  },
-  changeAddress: function(val) {
-    this.setData({ address: val.detail.value });
-  },
-  changeBirthdayChange: function(val) {
-    this.setData({ birthday: val.detail.value });
+    })
+    
   },
 });

@@ -19,4 +19,10 @@
       </view>
     </view>
   </view>
+  <view class="weui-cells__title" style="color:#f00;" wx:if="{{showErrorText}}">
+    修改失败！
+  </view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="confirm">完成</button>
+  </view>
 </view>

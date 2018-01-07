@@ -1,5 +1,7 @@
 const { URL } = require('../../utils/api');
 
+const app = getApp();
+
 Page({
   data: {
     phone: "",
@@ -54,7 +56,7 @@ Page({
         password: self.data.password,
       },
       success: function(res) {
-        console.log(res);
+        // console.log(res);
         if (res.statusCode === 200) {
           wx.showToast({
             title: '登录成功！',
@@ -65,12 +67,6 @@ Page({
                 key: "appUser",
                 data: {
                   _id: res.data._id,
-                  phone: res.data.phone,
-                  password: res.data.password,
-                  fullName: res.data.fullName,
-                  email: res.data.email,
-                  address: res.data.address,
-                  birthday: res.data.birthday,
                   token: res.data.token,
                 },
                 success: function() {
@@ -79,7 +75,7 @@ Page({
                   });
                 },
               });
-            }
+            },
           });
         } else {
           wx.hideLoading();
