@@ -12,6 +12,7 @@ Page({
     address: "",
     addressShort: "",
     birthday: "",
+    show: false,
   },
   onShow: function () {
     this.fetchData();
@@ -33,16 +34,19 @@ Page({
             'Authorization': token,
           },
           success: function(res) {
-            self.setData({
-              _id: res.data._id,
-              fullName: res.data.fullName,
-              phone: res.data.phone,
-              password: res.data.password,
-              email: res.data.email,
-              address: res.data.address,
-              addressShort: res.data.address.length > 12 ? res.data.address.substr(0, 12) + '...' : res.data.address,
-              birthday: res.data.birthday,
-            });
+            if (res.statusCode === 200 ){
+              self.setData({
+                _id: res.data._id,
+                fullName: res.data.fullName,
+                phone: res.data.phone,
+                password: res.data.password,
+                email: res.data.email,
+                address: res.data.address,
+                addressShort: res.data.address.length > 12 ? res.data.address.substr(0, 12) + '...' : res.data.address,
+                birthday: res.data.birthday,
+                show: true,
+              });
+            }
             wx.hideLoading();
           },
           fail: function(e) {

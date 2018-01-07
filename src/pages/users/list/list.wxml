@@ -1,5 +1,5 @@
 <view >
-  <view class="weui-cells weui-cells_after-title">
+  <view class="weui-cells weui-cells_after-title" wx:if="{{show}}">
     <navigator 
       url="/pages/users/item/item?type=text&label=姓名&_id={{_id}}&key=fullName&val={{fullName}}" 
       class="weui-cell weui-cell_access" 

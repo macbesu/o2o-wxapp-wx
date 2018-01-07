@@ -85,6 +85,7 @@ Page({
         }
       },
       fail: function(e) {
+        console.error(e);
         wx.hideLoading();
         self.setData({ 
           showErrorText: true,

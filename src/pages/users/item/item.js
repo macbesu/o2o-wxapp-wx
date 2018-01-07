@@ -28,7 +28,7 @@ Page({
           token: res.data.token,
         });
       },
-    })
+    });
   },
   changeValue: function(val) {
     this.setData({ 
@@ -64,8 +64,8 @@ Page({
     const self = this;
     obj[self.data.key] = self.data.val;
     wx.request({
-      url: URL + 'users/' + self.data._id,
-      method: 'PATCH',
+      url: URL + 'users/id=' + self.data._id,
+      method: 'POST',
       header: {
         'Authorization': self.data.token,
       },
@@ -89,6 +89,7 @@ Page({
         }
       },
       fail: function(e) {
+        console.error(e);
         self.setData({ 
           showErrorText: true,
         });
