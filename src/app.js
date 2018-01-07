@@ -8,17 +8,6 @@ App({
     var logs = wx.getStorageSync('logs') || [];
     logs.unshift(Date.now());
     wx.setStorageSync('logs', logs);
-    wx.getStorage({ // 获取登录wxapp信息
-      key: 'appUser',
-      success: function(res) {
-        wx.switchTab({
-          url: '/pages/home/home'
-        });
-      },
-      fail: function(e) {
-      },
-    });
-    
 
     // 登录
     wx.login({

@@ -4,7 +4,7 @@ Page({
   data: {
     phone: "",
     password: "",
-    isLogged: false,
+    showLogin: false,
     showErrorText: false,
   },
   onLoad: function() {
@@ -23,14 +23,14 @@ Page({
           url: '/pages/home/home'
         });
         wx.showToast({
-          title: '登录成功！',
+          title: '自动登录成功！',
           icon: 'success',
-          duration: 3000,
+          duration: 2000,
         });
       },
       fail: function(e) {
         wx.hideLoading();
-        self.setData({ isLogged: true });
+        self.setData({ showLogin: true });
       },
     });
   },
@@ -64,7 +64,13 @@ Page({
               wx.setStorage({
                 key: "appUser",
                 data: {
-                  user_id: res.data._id,
+                  _id: res.data._id,
+                  phone: res.data.phone,
+                  password: res.data.password,
+                  fullName: res.data.fullName,
+                  email: res.data.email,
+                  address: res.data.address,
+                  birthday: res.data.birthday,
                   token: res.data.token,
                 },
                 success: function() {
