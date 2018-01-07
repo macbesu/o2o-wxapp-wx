@@ -2,7 +2,7 @@ Page({
   data: {
     fullName: "",
     phone: "",
-    password: "",
+    password: "****************",
     email: "",
     address: "",
     birthday: "",
@@ -19,7 +19,15 @@ Page({
     wx.getStorage({
       key: 'appUser',
       success: function(res) {
-        console.log(res);
+        self.setData({
+          fullName: res.data.fullName,
+          phone: res.data.phone,
+          password: res.data.password,
+          email: res.data.email,
+          address: res.data.address,
+          birthday: res.data.birthday,
+        });
+        wx.hideLoading();
       },
       fail: function(e) {
         wx.hideLoading();
