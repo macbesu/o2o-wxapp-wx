@@ -51,6 +51,15 @@ Page({
         });
       },
     })
-    
+  },
+  logout: function() {
+    wx.removeStorage({
+      key: 'appUser',
+      success: function(res) {
+        wx.reLaunch({
+          url: '/pages/login/login'
+        });
+      } 
+    });
   },
 });
