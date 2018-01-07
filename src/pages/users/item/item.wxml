@@ -1,0 +1,22 @@
+<view >
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input" wx:if="{{type === 'text'}}">
+      <view class="weui-cell__hd">
+        <view class="weui-label">{{label}}</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入{{label}}" value="{{val}}" bindinput="changeValue" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input" wx:if="{{type === 'date'}}">
+      <view class="weui-cell__hd">
+        <view class="weui-label">生日</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="date" value="{{val}}" start="1900-09-01" end="2018-01-01" bindchange="changeValue">
+          <view class="weui-input">{{val}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+</view>

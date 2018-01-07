@@ -3,7 +3,8 @@
     "pages/login/login",
     "pages/home/home",
     "pages/orders/orders",
-    "pages/users/users"
+    "pages/users/list/list",
+    "pages/users/item/item"
   ],
   "window":{
     "backgroundTextStyle": "light",
@@ -29,7 +30,7 @@
             "text": "订单"
         },
         {
-            "pagePath": "pages/users/users",
+            "pagePath": "pages/users/list/list",
             "iconPath": "assets/ico-member.png",
             "selectedIconPath": "assets/ico-member-act.png",
             "text": "我的"

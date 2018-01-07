@@ -5,6 +5,7 @@ Page({
     password: "****************",
     email: "",
     address: "",
+    addressShort: "",
     birthday: "",
   },
   onLoad: function () {
@@ -25,6 +26,7 @@ Page({
           password: res.data.password,
           email: res.data.email,
           address: res.data.address,
+          addressShort: res.data.address.length > 12 ? res.data.address.substr(0, 12) + '...' : res.data.address,
           birthday: res.data.birthday,
         });
         wx.hideLoading();
