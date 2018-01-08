@@ -5,11 +5,14 @@
       <view class="weui-cell__hd">
         <view class="weui-label">头像</view>
       </view>
-      <view class="weui-cell__bd">
-        <view class="weui-uploader__file" bindtap="previewImage" id="{{imgUrl}}">
-          <image class="weui-uploader__img" src="{{imgUrl}}" mode="aspectFill" />
+      <view class="weui-cell__bd" style="padding-top: 20rpx;">
+        <view class="weui-uploader__file" bindtap="previewImage" id="{{imageUrls}}">
+          <image class="weui-uploader__img" src="{{imageUrls}}" mode="aspectFill" style="border:1px solid #ddd;"/>
+          <!--<view class="weui-uploader__file-content">
+            <icon type="warn" size="23" color="#F43530"></icon>
+          </view>-->
         </view>
-        <view class="weui-uploader__input-box">
+        <view class="weui-uploader__input-box" style="margin-top:2rpx;">
           <view class="weui-uploader__input" bindtap="chooseImage"></view>
         </view>
       </view>
@@ -67,17 +70,19 @@
         <view class="weui-label">生日</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" value="{{birthday}}" placeholder="请输入生日" bindinput="changeBirthday" />
+        <picker mode="date" value="{{birthday}}" start="1900-09-01" end="2018-01-01" bindchange="changeBirthday">
+          <view class="weui-input">{{birthday}}</view>
+        </picker>
       </view>
     </view>
   </view>
 
   <view class="weui-cells__title" style="color:#f00;" wx:if="{{showErrorText}}">
-    注册失败！
+    {{errorText}}
   </view>
 
   <view class="weui-btn-area">
-    <button class="weui-btn" type="primary" bindtap="confirmLogin">注册</button>
+    <button class="weui-btn" type="primary" bindtap="confirmRegister">注册</button>
   </view>
 
   <view class="" style="text-align: center; margin-top: 30rpx;">

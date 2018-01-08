@@ -21,6 +21,8 @@ Page({
     wx.getStorage({
       key: 'appUser',
       success: function(res) {
+        app.globalData._id = res.data._id;
+        app.globalData.token = res.data.token;
         wx.switchTab({
           url: '/pages/home/home'
         });
@@ -56,7 +58,6 @@ Page({
         password: self.data.password,
       },
       success: function(res) {
-        // console.log(res);
         if (res.statusCode === 200) {
           wx.showToast({
             title: '登录成功！',
@@ -70,6 +71,8 @@ Page({
                   token: res.data.token,
                 },
                 success: function() {
+                  app.globalData._id = res.data._id;
+                  app.globalData.token = res.data.token;
                   wx.switchTab({
                     url: '/pages/home/home'
                   });
