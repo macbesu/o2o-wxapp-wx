@@ -1,0 +1,6 @@
+<view class="weui-footer weui-footer_fixed-bottom">
+  <view class="weui-footer__links">
+    <navigator url="" class="weui-footer__link">润っ餐饮</navigator>
+  </view>
+  <view class="weui-footer__text">Copyright © 2017-2018 run.io</view>
+</view>
