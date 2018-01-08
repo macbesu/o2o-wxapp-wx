@@ -1,18 +1,19 @@
-const { URL } = require('../../../utils/api');
+const { SERVER, URL } = require('../../../utils/api');
 
 const app = getApp();
 
 Page({
   data: {
+    SERVER: SERVER,
     _id: "",
     type: "",
     label: "",
     key: "",
     val: "",
     valAgain: "",
-    token: "",
     errorText: "修改失败！",
     showErrorText: false,
+    imageUrls: [],
   },
   onLoad: function (options) {
     const { _id, type, label, key, val } = options;
@@ -20,14 +21,6 @@ Page({
     const self = this;
     wx.setNavigationBarTitle({ 
       title: `设置${label}` 
-    });
-    wx.getStorage({
-      key: 'appUser',
-      success: function(res) {
-        self.setData({
-          token: res.data.token,
-        });
-      },
     });
   },
   changeValue: function(val) {
@@ -62,12 +55,13 @@ Page({
   updateData: function() {
     const obj = {};
     const self = this;
+    const token = app.globalData.token;
     obj[self.data.key] = self.data.val;
     wx.request({
       url: URL + 'users/id=' + self.data._id,
       method: 'POST',
       header: {
-        'Authorization': self.data.token,
+        'Authorization': token,
       },
       data: obj,
       success: function(res) {
@@ -94,6 +88,37 @@ Page({
           showErrorText: true,
         });
       },
+    });
+  },
+  chooseImage: function (e) {
+    const self = this;
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'], 
+      success: function (res) {
+        wx.uploadFile({
+          url: URL + 'files/uploadAvatar',
+          filePath: res.tempFilePaths[0],
+          name: 'avatar',
+          success: function(res){
+            const url = JSON.parse(res.data).imageUrl;
+            const arr = new Array();
+            arr.push(SERVER + url);
+            self.setData({
+              val: url,
+              imageUrls: arr,
+              errorText: '',
+              showErrorText: false,
+            });
+          },
+        });
+      }
+    })
+  },
+  previewImage: function(e){
+    wx.previewImage({
+        current: e.currentTarget.id,
+        urls: this.data.imageUrls,
     });
   },
 });

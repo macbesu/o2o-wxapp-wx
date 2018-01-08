@@ -1,17 +1,19 @@
-const { URL } = require('../../../utils/api');
+const { SERVER, URL } = require('../../../utils/api');
 
 const app = getApp();
 
 Page({
   data: {
-    _id: "",
-    fullName: "",
-    phone: "",
+    SERVER: SERVER,
+    _id: '',
+    avatar: '',
+    fullName: '',
+    phone: '',
     password: "****************",
-    email: "",
-    address: "",
-    addressShort: "",
-    birthday: "",
+    email: '',
+    address: '',
+    addressShort: '',
+    birthday: '',
     show: false,
   },
   onShow: function () {
@@ -35,6 +37,7 @@ Page({
         if (res.statusCode === 200 ){
           self.setData({
             _id: res.data._id,
+            avatar: res.data.avatar,
             fullName: res.data.fullName,
             phone: res.data.phone,
             password: res.data.password,

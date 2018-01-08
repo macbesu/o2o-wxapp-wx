@@ -1,4 +1,21 @@
 <view >
+
+  <view class="" wx:if="{{type === 'image'}}">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">头像</view>
+      </view>
+      <view class="weui-cell__bd" style="padding-top: 20rpx;">
+        <view class="weui-uploader__file" bindtap="previewImage" id="{{SERVER + val}}">
+          <image class="weui-uploader__img" src="{{SERVER + val}}" mode="aspectFill" style="border:1px solid #ddd;"/>
+        </view>
+        <view class="weui-uploader__input-box" style="margin-top:2rpx;">
+          <view class="weui-uploader__input" bindtap="chooseImage"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
   <view class="weui-cells weui-cells_after-title" wx:if="{{type === 'text'}}">
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
@@ -49,7 +66,9 @@
   <view class="weui-cells__title" style="color:#f00;" wx:if="{{showErrorText}}">
     {{ errorText }}
   </view>
+
   <view class="weui-btn-area">
     <button class="weui-btn" type="primary" bindtap="confirm">完成</button>
   </view>
+
 </view>

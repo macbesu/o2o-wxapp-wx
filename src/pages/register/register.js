@@ -78,11 +78,8 @@ Page({
         showErrorText: true,
       });
     }
-    
-    
-    
-   
-    if (this.data.avatar && this.data.password === this.data.passwordAgain && this.data.password) {
+    if (this.data.avatar && this.data.password === this.data.passwordAgain && this.data.password 
+    && this.data.phone && this.data.fullName && this.data.email) {
       this.handleRegister();
     }
   },
@@ -158,5 +155,5 @@ Page({
         current: e.currentTarget.id,
         urls: this.data.imageUrls,
     });
-  }
+  },
 })

@@ -6,11 +6,8 @@
         <view class="weui-label">头像</view>
       </view>
       <view class="weui-cell__bd" style="padding-top: 20rpx;">
-        <view class="weui-uploader__file" bindtap="previewImage" id="{{imageUrls}}">
-          <image class="weui-uploader__img" src="{{imageUrls}}" mode="aspectFill" style="border:1px solid #ddd;"/>
-          <!--<view class="weui-uploader__file-content">
-            <icon type="warn" size="23" color="#F43530"></icon>
-          </view>-->
+        <view class="weui-uploader__file" bindtap="previewImage" id="{{SERVER + avatar}}">
+          <image class="weui-uploader__img" src="{{SERVER + avatar}}" mode="aspectFill" style="border:1px solid #ddd;"/>
         </view>
         <view class="weui-uploader__input-box" style="margin-top:2rpx;">
           <view class="weui-uploader__input" bindtap="chooseImage"></view>
@@ -87,7 +84,7 @@
 
   <view class="" style="text-align: center; margin-top: 30rpx;">
     <view class="weui-footer__links">
-      <navigator url="/pages/register/register" class="weui-footer__link">返回登录</navigator>
+      <navigator url="/pages/login/login" class="weui-footer__link">返回登录</navigator>
     </view>
   </view>
 </view>
