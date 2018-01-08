@@ -21,7 +21,7 @@
     </view>
     <view class="home-icons">
       <text class="iconfont icon-phone"></text>
-      <text class="iconfont icon-share"></text>
+      <text class="iconfont icon-share-copy"></text>
       <text class="iconfont icon-QRcode"></text>
     </view>
   </view> 

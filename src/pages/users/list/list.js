@@ -35,6 +35,7 @@ Page({
       },
       success: function(res) {
         if (res.statusCode === 200 ){
+          wx.hideLoading();
           self.setData({
             _id: res.data._id,
             avatar: res.data.avatar,
@@ -48,7 +49,6 @@ Page({
             show: true,
           });
         }
-        wx.hideLoading();
       },
       fail: function(e) {
         wx.hideLoading();

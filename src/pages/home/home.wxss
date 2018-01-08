@@ -9,14 +9,14 @@
 }
 
 .home-icons text {
-  margin-left: 24rpx;
+  margin-left: 28rpx;
 }
 
 .weui-search-bar {
   background-color:#fff;
   padding: 0;
   border: none;
-  width: 65%;
+  width: 60%;
 }
 
 
@@ -37,7 +37,6 @@
 .weui-search-bar__input {
   height: 60rpx;
   line-height: 60rpx;
- 
 }
 
 .adv {
