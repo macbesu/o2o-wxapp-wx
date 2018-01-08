@@ -1,21 +1,69 @@
-/**index.wxss**/
-.userinfo {
+.home-tools {
+  padding: 30rpx;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.home-icons {
+
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.home-icons text {
+  margin-left: 24rpx;
 }
 
-.usermotto {
-  margin-top: 200px;
+.weui-search-bar {
+  background-color:#fff;
+  padding: 0;
+  border: none;
+  width: 65%;
+}
+
+
+.weui-search-bar__form {
+  background-color:#f2f2f2;
+  border-radius: 30px;
+  /* border: 2rpx solid #e6e6ea; */
+}
+
+.weui-search-bar__box {
+  border: none;
+}
+
+.weui-search-bar__label {
+  border-radius: 30px;
+}
+
+.weui-search-bar__input {
+  height: 60rpx;
+  line-height: 60rpx;
+ 
+}
+
+.adv {
+  margin-top: 6rpx;
+  width: 100%;
+  height: 300rpx;
+}
+
+.adv image {
+  width: 100%;
+  height: 300rpx;
+}
+
+.page__bd {
+  margin-top: 20rpx;
+}
+
+.weui-panel__hd:after {
+  border: none;
+}
+
+.weui-panel:before,
+.weui-panel:after {
+  border: none;
+}
+
+.weui-media-box:before {
+  border: none;
 }

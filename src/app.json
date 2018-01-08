@@ -19,24 +19,23 @@
     "backgroundColor": "#fff",
     "borderStyle": "black",
     "list": [{
-            "pagePath": "pages/home/home",
-            "iconPath": "assets/ico-home.png",
-            "selectedIconPath": "assets/ico-home-act.png",
-            "text": "首页"
-        },
-        {
-            "pagePath": "pages/orders/orders",
-            "iconPath": "assets/ico-service.png",
-            "selectedIconPath": "assets/ico-service-act.png",
-            "text": "订单"
-        },
-        {
-            "pagePath": "pages/users/list/list",
-            "iconPath": "assets/ico-member.png",
-            "selectedIconPath": "assets/ico-member-act.png",
-            "text": "我的"
-        }
-    ]
+      "pagePath": "pages/home/home",
+      "iconPath": "assets/ico-home.png",
+      "selectedIconPath": "assets/ico-home-act.png",
+      "text": "首页"
+    },
+    {
+      "pagePath": "pages/orders/orders",
+      "iconPath": "assets/ico-service.png",
+      "selectedIconPath": "assets/ico-service-act.png",
+      "text": "订单"
+    },
+    {
+      "pagePath": "pages/users/list/list",
+      "iconPath": "assets/ico-member.png",
+      "selectedIconPath": "assets/ico-member-act.png",
+      "text": "我的"
+    }]
   },
   "debug": true
 }

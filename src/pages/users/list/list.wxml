@@ -1,4 +1,4 @@
-<view >
+<view>
   <view class="weui-cells weui-cells_after-title" wx:if="{{show}}">
 
     <navigator 
