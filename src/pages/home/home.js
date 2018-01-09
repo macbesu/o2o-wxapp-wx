@@ -7,11 +7,12 @@ Page({
   data: {
     SERVER: SERVER,
     inputShowed: false,
-    inputVal: "",
+    categoryFilter: '*',
+    foodFilter: '*',
     foods: [],
     categories: [],
     categories_index: 0,
-    currentCategory: "全部",
+    currentCategory: '(全部)',
   },
   onLoad: function() {
     wx.showShareMenu({
@@ -31,8 +32,13 @@ Page({
       },
       success: function(res) {
         if (res.statusCode === 200 ){
+          const defaultCategory = [{
+            _id: '*',
+            categoryName: '(全部)',
+          }];
+          const arr = defaultCategory.concat(res.data);
           self.setData({
-            categories: res.data,
+            categories: arr,
           });
         }
       },
@@ -48,7 +54,7 @@ Page({
     const self = this;
     const { _id, token } = app.globalData;
     wx.request({
-      url: URL + 'foods',
+      url: `${URL}foods/category=${self.data.categoryFilter?self.data.categoryFilter:'*'}&foodName=${self.data.foodFilter?self.data.foodFilter:'*'}`,
       method: 'GET',
       header: {
         'Authorization': token,
@@ -68,23 +74,25 @@ Page({
   },
   showInput: function () {
     this.setData({
-        inputShowed: true
+      inputShowed: true
     });
   },
   hideInput: function () {
     this.setData({
-      inputVal: "",
+      foodFilter: "",
       inputShowed: false
     });
   },
   clearInput: function () {
     this.setData({
-      inputVal: ""
+      foodFilter: ""
     });
   },
   inputTyping: function (e) {
     this.setData({
-      inputVal: e.detail.value
+      foodFilter: e.detail.value
+    }, () => {
+      this.getFoods();
     });
   },
   bindPickerChange: function(e) {
@@ -92,27 +100,13 @@ Page({
     this.setData({
       categories_index: e.detail.value,
       currentCategory: self.data.categories[e.detail.value].categoryName,
+      categoryFilter: self.data.categories[e.detail.value]._id,
     });
+    this.getFoods();
   },
   makePhoneCall: function() {
     wx.makePhoneCall({
       phoneNumber: '13286488084',
     });
   },
-  onShareAppMessage: function (res) {
-    if (res.from === 'text') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
-    return {
-      title: '自定义转发标题',
-      path: '/page/user?id=123',
-      success: function(res) {
-        // 转发成功
-      },
-      fail: function(res) {
-        // 转发失败
-      }
-    }
-  }
 });

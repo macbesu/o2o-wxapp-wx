@@ -57,6 +57,7 @@
             </view>
           </view>
         </view>
+        <view class="nothing" wx:if="{{foods.length === 0}}">(゜v゜)つ什么都没有...</view>
       </view>
     </view>
   </view>
