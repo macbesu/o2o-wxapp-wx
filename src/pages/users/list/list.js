@@ -26,7 +26,6 @@ Page({
     });
     const self = this;
     const { _id, token } = app.globalData;
-    console.log(_id, token);
     wx.request({
       url: URL + 'users/id=' + _id,
       method: 'GET',

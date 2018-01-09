@@ -4,12 +4,8 @@
   justify-content: space-between;
 }
 
-.home-icons {
-
-}
-
-.home-icons text {
-  margin-left: 28rpx;
+.home-tools .home-icons text {
+  margin-left: 32rpx;
 }
 
 .weui-search-bar {
@@ -19,50 +15,83 @@
   width: 60%;
 }
 
-
-.weui-search-bar__form {
+.weui-search-bar .weui-search-bar__form {
   background-color:#f2f2f2;
   border-radius: 30px;
   /* border: 2rpx solid #e6e6ea; */
 }
 
-.weui-search-bar__box {
+.weui-search-bar .weui-search-bar__box {
   border: none;
 }
 
-.weui-search-bar__label {
+.weui-search-bar .weui-search-bar__label {
   border-radius: 30px;
 }
 
-.weui-search-bar__input {
+.weui-search-bar .weui-search-bar__input {
   height: 60rpx;
   line-height: 60rpx;
 }
 
-.adv {
-  margin-top: 6rpx;
-  width: 100%;
-  height: 300rpx;
+.home-content {
+  padding: 0 30rpx 200rpx;
 }
 
-.adv image {
-  width: 100%;
-  height: 300rpx;
+.home-content .home-category {
+  display: flex;
+  margin: 20rpx 0;
+  font-size: 28rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  justify-content: space-between;
 }
 
-.page__bd {
-  margin-top: 20rpx;
+.home-content .home-category .home-current {
+  
 }
 
-.weui-panel__hd:after {
-  border: none;
+.home-content .home-category .home-picker {
+  color: #d75876;
 }
 
-.weui-panel:before,
-.weui-panel:after {
-  border: none;
+.home-content .home-foods .weui-panel__hd {
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.weui-media-box:before {
+.home-content .home-foods .weui-media-box {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.home-content .home-foods .weui-media-box__hd_in-appmsg {
+  width: 160rpx;
+}
+
+.home-content .home-foods .weui-media-box__title {
+
+}
+
+.home-content .home-foods .weui-media-box__title .sellout {
+  color: #9E9E9E;
+  font-weight: 400;
+  font-size: 28rpx;
+}
+
+.home-content .home-foods .weui-media-box__price {
+  color: #f00;
+  font-size: 28rpx;
+}
+
+.home-content .home-foods .weui-media-box__desc {
+  margin-top: 2rpx;
+}
+
+.home-content .home-foods .weui-panel__hd:after,
+.home-content .home-foods .weui-panel:before,
+.home-content .home-foods .weui-panel:after,
+.home-content .home-foods .weui-media-box:before
+{
   border: none;
 }
