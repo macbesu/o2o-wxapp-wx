@@ -107,6 +107,10 @@
   margin-top: 4rpx;
 }
 
+.home-content .home-foods .weui-media-box__ad .weui-media-box__price .newprice {
+  margin-left: 20rpx;
+}
+
 .home-content .home-foods .weui-media-box__ad .weui-media-box__buy .iconfont {
   font-size: 22rpx;
   font-weight: 700;

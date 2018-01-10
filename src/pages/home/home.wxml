@@ -49,16 +49,16 @@
                   <text style="{{item.sellout ? 'text-decoration:line-through':null}}">{{item.foodName}}</text>
                   <text class="sellout" wx:if="{{item.sellout}}">（已售罄）</text>
                 </view>
-                
                 <view class="weui-media-box__desc">{{item.description}}</view>
                 <view class="weui-media-box__ad">
                   <view class="weui-media-box__price">
-                    ¥ {{item.price}}
+                    <text style="{{item.newPrice ? 'text-decoration:line-through':null}}">¥ {{item.price}}</text>
+                    <text class="newprice" wx:if="{{item.newPrice}}">¥{{item.newPrice}}</text>
                   </view>
-                  <view class="weui-media-box__buy">
-                    <text class="iconfont icon-minus_normal"></text>
-                    <text class="number">12</text>
-                    <text class="iconfont icon-add_noraml"></text>
+                  <view class="weui-media-box__buy" wx:if="{{!item.sellout}}">
+                    <text class="iconfont icon-minus_normal" wx:if="{{item.amount}}" bindtap="buyRemoveOne" data-id="{{item._id}}" data-index="{{index}}"></text>
+                    <text class="number" wx:if="{{item.amount}}">{{item.amount}}</text>
+                    <text class="iconfont icon-add_noraml" bindtap="buyAddOne" data-id="{{item._id}}" data-index="{{index}}"></text>
                   </view>
                 </view>
               </view>
