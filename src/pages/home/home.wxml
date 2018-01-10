@@ -52,13 +52,32 @@
                 <view class="weui-media-box__desc">{{item.description}}</view>
                 <view class="weui-media-box__ad">
                   <view class="weui-media-box__price">
-                    <text style="{{item.newPrice ? 'text-decoration:line-through':null}}">¥ {{item.price}}</text>
                     <text class="newprice" wx:if="{{item.newPrice}}">¥{{item.newPrice}}</text>
+                    <text 
+                      class="prevprice" 
+                      style="{{item.newPrice ? 'text-decoration:line-through':null}}"
+                      wx:if="{{item.newPrice !== item.price}}"
+                    >¥{{item.price}}</text>
                   </view>
                   <view class="weui-media-box__buy" wx:if="{{!item.sellout}}">
-                    <text class="iconfont icon-minus_normal" wx:if="{{item.amount}}" bindtap="buyRemoveOne" data-id="{{item._id}}" data-index="{{index}}"></text>
+                    <text 
+                      class="iconfont icon-minus_normal" 
+                      wx:if="{{item.amount}}" 
+                      bindtap="buyRemoveOne" 
+                      data-id="{{item._id}}" 
+                      data-index="{{index}}"
+                      data-price="{{item.price}}"
+                      data-newPrice="{{item.newPrice}}"
+                    ></text>
                     <text class="number" wx:if="{{item.amount}}">{{item.amount}}</text>
-                    <text class="iconfont icon-add_noraml" bindtap="buyAddOne" data-id="{{item._id}}" data-index="{{index}}"></text>
+                    <text 
+                      class="iconfont icon-add_noraml" 
+                      bindtap="buyAddOne" 
+                      data-id="{{item._id}}" 
+                      data-index="{{index}}"
+                      data-price="{{item.price}}"
+                      data-newprice="{{item.newPrice}}"
+                    ></text>
                   </view>
                 </view>
               </view>
@@ -79,7 +98,7 @@
       <view class="home-cart-calc">
         <view class="home-cart-calc-totalprice">
           <text class="home-cart-calc-totalprice-after">¥ {{totalFinalPrice}}</text>
-          <text class="home-cart-calc-totalprice-before">¥{{totalBeforePrice}}</text>
+          <text class="home-cart-calc-totalprice-before" wx:if="{{totalFinalPrice !== totalBeforePrice}}">¥{{totalBeforePrice}}</text>
         </view>
         <view class="home-cart-calc-post">
           <text>免配送费  |  支持到店自取</text>

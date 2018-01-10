@@ -14,8 +14,8 @@ Page({
     orders: {},
     ordersCount: 0,
     categoriesIndex: 0,
-    totalBeforePrice: 250,
-    totalFinalPrice: 218,
+    totalBeforePrice: 0,
+    totalFinalPrice: 0,
     currentCategory: '(全部)',
   },
   onLoad: function() {
@@ -76,8 +76,11 @@ Page({
                 item.newPrice = (item.price * item.coupon.value).toFixed(1);
               } else if (item.coupon.couponType === 1 && item.coupon.limit < item.price) {
                 item.newPrice = item.price - item.coupon.value;
+              } else {
+                item.newPrice = item.price;
               }
-              
+            } else {
+              item.newPrice = item.price;
             }
           });
           self.setData({ foods: data });
@@ -89,10 +92,10 @@ Page({
     });
   },
   buyAddOne: function(e) {
-    const { id, index } = e.target.dataset;
+    const { id, index, price, newprice } = e.target.dataset;
     const orders = Object.assign({}, this.data.orders);
     const foods = this.data.foods;
-    let ordersCount = this.data.ordersCount;
+    let { ordersCount, totalBeforePrice, totalFinalPrice } = this.data;
     if (orders.hasOwnProperty(id)) {
       if (orders[id] < 20) {
         orders[id] += 1;
@@ -106,27 +109,42 @@ Page({
         item.amount = orders[item._id];
       }
     });
-    this.setData({ orders: orders, foods: foods, ordersCount: ordersCount });
+    totalBeforePrice += parseFloat(price);
+    totalFinalPrice += parseFloat(newprice);
+    this.setData({ 
+      orders, 
+      foods, 
+      ordersCount, 
+      totalBeforePrice: this.handleFloatFixed(totalBeforePrice), 
+      totalFinalPrice: this.handleFloatFixed(totalFinalPrice),
+    });
   },
   buyRemoveOne: function(e) {
-    const { id, index } = e.target.dataset;
+    const { id, index, price, newprice } = e.target.dataset;
     const orders = Object.assign({}, this.data.orders);
     const foods = this.data.foods;
-    let ordersCount = this.data.ordersCount;
+    let { ordersCount, totalBeforePrice, totalFinalPrice } = this.data;
     if (orders[id] > 0) {
       orders[id] -= 1;
     }
     foods.forEach((item, index) => {
       if (orders.hasOwnProperty(item._id)) {
         item.amount = orders[item._id];
-        console.warn(orders);
       }
     });
     if (orders[id] === 0) {
       ordersCount -= 1;
       delete orders[id];
     }
-    this.setData({ orders: orders, foods: foods, ordersCount: ordersCount });
+    totalBeforePrice -= parseFloat(price);
+    totalFinalPrice -= parseFloat(newprice);
+    this.setData({ 
+      orders, 
+      foods, 
+      ordersCount, 
+      totalBeforePrice: this.handleFloatFixed(totalBeforePrice), 
+      totalFinalPrice: this.handleFloatFixed(totalFinalPrice),
+    });
   },
   showInput: function () {
     this.setData({
@@ -164,5 +182,18 @@ Page({
     wx.makePhoneCall({
       phoneNumber: '13286488084',
     });
+  },
+  handleFloatFixed: function(number) {
+    const str = `${number}`
+    const idx = str.indexOf('.');
+    if (idx !== -1) {
+      if (str.length - idx > 2) {
+        return parseFloat(number.toFixed(2));
+      } else {
+        return parseFloat(number.toFixed(1));
+      }
+    } else {
+      return number;
+    }
   },
 });
