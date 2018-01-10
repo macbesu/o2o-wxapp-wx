@@ -12,7 +12,10 @@ Page({
     foods: [],
     categories: [],
     orders: {},
-    categories_index: 0,
+    ordersCount: 0,
+    categoriesIndex: 0,
+    totalBeforePrice: 250,
+    totalFinalPrice: 218,
     currentCategory: '(全部)',
   },
   onLoad: function() {
@@ -89,33 +92,41 @@ Page({
     const { id, index } = e.target.dataset;
     const orders = Object.assign({}, this.data.orders);
     const foods = this.data.foods;
+    let ordersCount = this.data.ordersCount;
     if (orders.hasOwnProperty(id)) {
       if (orders[id] < 20) {
         orders[id] += 1;
       }
     } else {
       orders[id] = 1;
+      ordersCount += 1;
     }
     foods.forEach((item, index) => {
       if (orders.hasOwnProperty(item._id)) {
         item.amount = orders[item._id];
       }
     });
-    this.setData({ orders: orders, foods: foods });
+    this.setData({ orders: orders, foods: foods, ordersCount: ordersCount });
   },
   buyRemoveOne: function(e) {
     const { id, index } = e.target.dataset;
     const orders = Object.assign({}, this.data.orders);
     const foods = this.data.foods;
+    let ordersCount = this.data.ordersCount;
     if (orders[id] > 0) {
       orders[id] -= 1;
     }
     foods.forEach((item, index) => {
       if (orders.hasOwnProperty(item._id)) {
         item.amount = orders[item._id];
+        console.warn(orders);
       }
     });
-    this.setData({ orders: orders, foods: foods });
+    if (orders[id] === 0) {
+      ordersCount -= 1;
+      delete orders[id];
+    }
+    this.setData({ orders: orders, foods: foods, ordersCount: ordersCount });
   },
   showInput: function () {
     this.setData({
@@ -143,7 +154,7 @@ Page({
   bindPickerChange: function(e) {
     const self = this;
     this.setData({
-      categories_index: e.detail.value,
+      categoriesIndex: e.detail.value,
       currentCategory: self.data.categories[e.detail.value].categoryName,
       categoryFilter: self.data.categories[e.detail.value]._id,
     });
