@@ -110,4 +110,38 @@
     </view>
   </view>
 
+  <view class="home-orders">
+    <view class="home-orders-clear">
+    </view>
+
+    <view class="home-orders-content">
+      <view class="home-orders-item">
+        <view class="home-orders-item-name"></view>
+        <view class="home-orders-item-price">¥</view>
+        <view class="home-orders-item-tools">
+          <view class="weui-media-box__buy" wx:if="{{!item.sellout}}">
+            <!--<text 
+              class="iconfont icon-minus_normal" 
+              wx:if="{{item.amount}}" 
+              bindtap="buyRemoveOne" 
+              data-id="{{item._id}}" 
+              data-index="{{index}}"
+              data-price="{{item.price}}"
+              data-newPrice="{{item.newPrice}}"
+            ></text>
+            <text class="number" wx:if="{{item.amount}}">{{item.amount}}</text>
+            <text 
+              class="iconfont icon-add_noraml" 
+              bindtap="buyAddOne" 
+              data-id="{{item._id}}" 
+              data-index="{{index}}"
+              data-price="{{item.price}}"
+              data-newprice="{{item.newPrice}}"
+            ></text>-->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
 </view> 

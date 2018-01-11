@@ -35,7 +35,7 @@
 }
 
 .home-content {
-  padding: 0 30rpx 180rpx;
+  padding: 0 30rpx 100rpx;
 }
 
 .home-content .home-category {
@@ -153,6 +153,7 @@
   position: fixed;
   bottom: 0;
   height: 108rpx;
+  z-index: 100;
 }
 
 .home-cart .home-cart-box {
@@ -172,6 +173,7 @@
   background-color: #f5d157;
   line-height: 100rpx;
   text-align: center;
+  z-index: 999;
 }
 
 .home-cart .home-cart-badge .iconfont {

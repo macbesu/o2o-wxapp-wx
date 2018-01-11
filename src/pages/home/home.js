@@ -69,7 +69,7 @@ Page({
           const data = res.data;
           data.forEach((item, index) => {
             if (self.data.orders.hasOwnProperty(item._id)) {
-              item.amount = self.data.orders[item._id];
+              item.amount = self.data.orders[item._id].count;
             }
             if (item.coupon) {
               if (item.coupon.couponType === 0) {
@@ -97,16 +97,19 @@ Page({
     const foods = this.data.foods;
     let { ordersCount, totalBeforePrice, totalFinalPrice } = this.data;
     if (orders.hasOwnProperty(id)) {
-      if (orders[id] < 20) {
-        orders[id] += 1;
+      if (orders[id].count < 20) {
+        orders[id].count += 1;
       }
     } else {
-      orders[id] = 1;
+      orders[id] = {};
+      orders[id].count = 1;
+      orders[id].price = price;
+      orders[id].newprice = newprice;
       ordersCount += 1;
     }
     foods.forEach((item, index) => {
       if (orders.hasOwnProperty(item._id)) {
-        item.amount = orders[item._id];
+        item.amount = orders[item._id].count;
       }
     });
     totalBeforePrice += parseFloat(price);
@@ -124,15 +127,15 @@ Page({
     const orders = Object.assign({}, this.data.orders);
     const foods = this.data.foods;
     let { ordersCount, totalBeforePrice, totalFinalPrice } = this.data;
-    if (orders[id] > 0) {
-      orders[id] -= 1;
+    if (orders[id].count > 0) {
+      orders[id].count -= 1;
     }
     foods.forEach((item, index) => {
       if (orders.hasOwnProperty(item._id)) {
-        item.amount = orders[item._id];
+        item.amount = orders[item._id].count;
       }
     });
-    if (orders[id] === 0) {
+    if (orders[id].count === 0) {
       ordersCount -= 1;
       delete orders[id];
     }
