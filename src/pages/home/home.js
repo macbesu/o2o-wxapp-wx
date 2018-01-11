@@ -94,7 +94,7 @@ Page({
     });
   },
   buyAddOne: function(e) {
-    const { id, index, price, newprice } = e.target.dataset;
+    const { id, name, price, newprice } = e.target.dataset;
     const orders = Object.assign({}, this.data.orders);
     const foods = this.data.foods;
     if (orders.hasOwnProperty(id)) {
@@ -104,6 +104,7 @@ Page({
     } else {
       orders[id] = {};
       orders[id].count = 1;
+      orders[id].name = name;
       orders[id].price = parseFloat(price);
       orders[id].newprice = parseFloat(newprice);
     }
@@ -117,7 +118,7 @@ Page({
     });
   },
   buyRemoveOne: function(e) {
-    const { id, index, price, newprice } = e.target.dataset;
+    const { id } = e.target.dataset;
     const orders = Object.assign({}, this.data.orders);
     const foods = this.data.foods;
     if (orders[id].count > 0) {
@@ -141,11 +142,13 @@ Page({
     let [ ordersCount, totalBeforePrice, totalFinalPrice ] = [ 0, 0, 0 ];
     for (let key in orders) {
       ordersCount += 1;
+      const price = orders[key].price;
+      const newprice = orders[key].newprice;
       totalBeforePrice += orders[key].count * orders[key].price;
       totalFinalPrice += orders[key].count * orders[key].newprice;
       cart.push({
-        _id: orders[key]._id,
-        foodName: orders[key].foodName,
+        _id: key,
+        foodName: orders[key].name,
         count: orders[key].count,
         totalWithCoupon: orders[key].count * orders[key].newprice,
       });
@@ -155,8 +158,6 @@ Page({
       cart,
       totalBeforePrice: this.handleFloatFixed(totalBeforePrice),
       totalFinalPrice: this.handleFloatFixed(totalFinalPrice),
-    }, () => {
-      console.warn(cart);
     });
   },
   handleShowCart: function() {
@@ -171,7 +172,7 @@ Page({
       });
     }
   },
-  handleClickMask: function() {
+  handleHideOrders: function() {
     this.setData({
       showHomeOrders: false,
     });
