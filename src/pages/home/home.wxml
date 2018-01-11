@@ -1,4 +1,4 @@
-<view>
+<view style="{{showHomeOrders ? 'position:fixed;left:0;right:0;top:0;bottom:0' : null}}">
 
   <view class="home-tools"> 
     <view class="weui-search-bar">
@@ -91,7 +91,7 @@
 
   <view class="home-cart">
     <view class="home-cart-box">
-      <view class="home-cart-badge">
+      <view class="home-cart-badge" bindtap="handleShowCart">
         <text class="iconfont icon-gouwuche"></text>
         <text class="number" wx:if="{{ordersCount && ordersCount > 0}}">{{ordersCount}}</text>
       </view>
@@ -110,38 +110,32 @@
     </view>
   </view>
 
-  <view class="home-orders">
+  <view class="home-orders" style="{{showHomeOrders ? 'bottom: 108rpx' : 'bottom: -352rpx'}}">
     <view class="home-orders-clear">
+      <text class="iconfont icon-zhankai"> 收起</text>
     </view>
-
-    <view class="home-orders-content">
+    <scroll-view scroll-y  class="home-orders-content">
       <view class="home-orders-item">
         <view class="home-orders-item-name"></view>
         <view class="home-orders-item-price">¥</view>
         <view class="home-orders-item-tools">
-          <view class="weui-media-box__buy" wx:if="{{!item.sellout}}">
-            <!--<text 
-              class="iconfont icon-minus_normal" 
-              wx:if="{{item.amount}}" 
-              bindtap="buyRemoveOne" 
-              data-id="{{item._id}}" 
-              data-index="{{index}}"
-              data-price="{{item.price}}"
-              data-newPrice="{{item.newPrice}}"
+          <view class="weui-media-box__buy" wx:if="{{true}}">
+            <text 
+              class="iconfont icon-minus_normal"
+              bindtap="buyRemoveOne"
             ></text>
-            <text class="number" wx:if="{{item.amount}}">{{item.amount}}</text>
+            <text class="number"></text>
             <text 
               class="iconfont icon-add_noraml" 
               bindtap="buyAddOne" 
-              data-id="{{item._id}}" 
-              data-index="{{index}}"
-              data-price="{{item.price}}"
-              data-newprice="{{item.newPrice}}"
-            ></text>-->
+            ></text>
           </view>
         </view>
       </view>
-    </view>
+    </scroll-view>
   </view>
+
+  <view class="home-mask" bindtap="handleClickMask" 
+    style="opacity: {{ showHomeOrders ? '1' : '0' }} ; visibility: {{ showHomeOrders ? 'visible' : 'hidden' }}"></view>
 
 </view> 

@@ -12,11 +12,13 @@ Page({
     foods: [],
     categories: [],
     orders: {},
+    cart: [],
     ordersCount: 0,
     categoriesIndex: 0,
     totalBeforePrice: 0,
     totalFinalPrice: 0,
     currentCategory: '(全部)',
+    showHomeOrders: false,
   },
   onLoad: function() {
     wx.showShareMenu({
@@ -135,16 +137,43 @@ Page({
   },
   calculateTotal: function() {
     let { orders } = this.data;
+    const cart = [];
     let [ ordersCount, totalBeforePrice, totalFinalPrice ] = [ 0, 0, 0 ];
     for (let key in orders) {
       ordersCount += 1;
       totalBeforePrice += orders[key].count * orders[key].price;
       totalFinalPrice += orders[key].count * orders[key].newprice;
+      cart.push({
+        _id: orders[key]._id,
+        foodName: orders[key].foodName,
+        count: orders[key].count,
+        totalWithCoupon: orders[key].count * orders[key].newprice,
+      });
     }
     this.setData({
       ordersCount,
+      cart,
       totalBeforePrice: this.handleFloatFixed(totalBeforePrice),
       totalFinalPrice: this.handleFloatFixed(totalFinalPrice),
+    }, () => {
+      console.warn(cart);
+    });
+  },
+  handleShowCart: function() {
+    const { showHomeOrders } = this.data;
+    if (showHomeOrders) {
+      this.setData({
+        showHomeOrders: false,
+      });
+    } else {
+      this.setData({
+        showHomeOrders: true,
+      });
+    }
+  },
+  handleClickMask: function() {
+    this.setData({
+      showHomeOrders: false,
     });
   },
   showInput: function () {
