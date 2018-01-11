@@ -67,7 +67,7 @@
                       data-id="{{item._id}}" 
                       data-index="{{index}}"
                       data-price="{{item.price}}"
-                      data-newPrice="{{item.newPrice}}"
+                      data-newprice="{{item.newPrice}}"
                     ></text>
                     <text class="number" wx:if="{{item.amount}}">{{item.amount}}</text>
                     <text 

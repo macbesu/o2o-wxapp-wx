@@ -95,7 +95,6 @@ Page({
     const { id, index, price, newprice } = e.target.dataset;
     const orders = Object.assign({}, this.data.orders);
     const foods = this.data.foods;
-    let { ordersCount, totalBeforePrice, totalFinalPrice } = this.data;
     if (orders.hasOwnProperty(id)) {
       if (orders[id].count < 20) {
         orders[id].count += 1;
@@ -103,30 +102,22 @@ Page({
     } else {
       orders[id] = {};
       orders[id].count = 1;
-      orders[id].price = price;
-      orders[id].newprice = newprice;
-      ordersCount += 1;
+      orders[id].price = parseFloat(price);
+      orders[id].newprice = parseFloat(newprice);
     }
     foods.forEach((item, index) => {
       if (orders.hasOwnProperty(item._id)) {
         item.amount = orders[item._id].count;
       }
     });
-    totalBeforePrice += parseFloat(price);
-    totalFinalPrice += parseFloat(newprice);
-    this.setData({ 
-      orders, 
-      foods, 
-      ordersCount, 
-      totalBeforePrice: this.handleFloatFixed(totalBeforePrice), 
-      totalFinalPrice: this.handleFloatFixed(totalFinalPrice),
+    this.setData({ orders, foods }, () => {
+      this.calculateTotal();
     });
   },
   buyRemoveOne: function(e) {
     const { id, index, price, newprice } = e.target.dataset;
     const orders = Object.assign({}, this.data.orders);
     const foods = this.data.foods;
-    let { ordersCount, totalBeforePrice, totalFinalPrice } = this.data;
     if (orders[id].count > 0) {
       orders[id].count -= 1;
     }
@@ -136,16 +127,23 @@ Page({
       }
     });
     if (orders[id].count === 0) {
-      ordersCount -= 1;
       delete orders[id];
     }
-    totalBeforePrice -= parseFloat(price);
-    totalFinalPrice -= parseFloat(newprice);
-    this.setData({ 
-      orders, 
-      foods, 
-      ordersCount, 
-      totalBeforePrice: this.handleFloatFixed(totalBeforePrice), 
+    this.setData({ orders, foods }, () => {
+      this.calculateTotal();
+    });
+  },
+  calculateTotal: function() {
+    let { orders } = this.data;
+    let [ ordersCount, totalBeforePrice, totalFinalPrice ] = [ 0, 0, 0 ];
+    for (let key in orders) {
+      ordersCount += 1;
+      totalBeforePrice += orders[key].count * orders[key].price;
+      totalFinalPrice += orders[key].count * orders[key].newprice;
+    }
+    this.setData({
+      ordersCount,
+      totalBeforePrice: this.handleFloatFixed(totalBeforePrice),
       totalFinalPrice: this.handleFloatFixed(totalFinalPrice),
     });
   },
