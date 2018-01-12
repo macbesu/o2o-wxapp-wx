@@ -198,7 +198,7 @@
 .home-cart .home-cart-calc {
   width: 71.5%;
   height: 108rpx;
-  background-color: rgba(69, 68, 69, 0.98);
+  background-color: rgba(69, 68, 69, 0.95);
 }
 
 .home-cart .home-cart-calc .home-cart-calc-totalprice {
@@ -212,14 +212,14 @@
 }
 
 .home-cart .home-cart-calc .home-cart-calc-totalprice .home-cart-calc-totalprice-before {
-  color: #a7a19c;
+  color: #aaa;
   font-size: 26rpx;
   margin-left: 8rpx;
   text-decoration: line-through;
 }
 
 .home-cart .home-cart-calc .home-cart-calc-post {
-  color: #a7a19c;
+  color: #aaa;
   margin-top: -8rpx;
   margin-left: 140rpx;
   font-size: 22rpx;

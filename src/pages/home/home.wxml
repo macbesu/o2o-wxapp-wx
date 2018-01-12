@@ -88,21 +88,31 @@
 
   <view class="home-cart">
     <view class="home-cart-box">
-      <view class="home-cart-badge" bindtap="handleShowCart">
+      <view class="home-cart-badge" 
+        bindtap="handleShowCart"
+        style="{{ ordersCount && ordersCount > 0 ? 'background-color: #f5d157; color: #333;' : 'background-color: #666; color: #ccc;' }}"
+      >
         <text class="iconfont icon-gouwuche"></text>
         <text class="number" wx:if="{{ordersCount && ordersCount > 0}}">{{ordersCount}}</text>
       </view>
       <view class="home-cart-calc">
         <view class="home-cart-calc-totalprice">
-          <text class="home-cart-calc-totalprice-after">¥ {{totalFinalPrice}}</text>
+          <text 
+            class="home-cart-calc-totalprice-after" 
+            wx:if="{{true}}"
+            style="color: {{ ordersCount && ordersCount > 0 ? '#fff' : '#a7a19c' }}"
+          >¥ {{totalFinalPrice}}</text>
           <text class="home-cart-calc-totalprice-before" wx:if="{{totalFinalPrice !== totalBeforePrice}}">¥{{totalBeforePrice}}</text>
         </view>
         <view class="home-cart-calc-post">
           <text>免配送费  |  支持到店自取</text>
         </view>
       </view>
-      <view class="home-cart-btn">
-        <text>去结算</text>
+      <view 
+        class="home-cart-btn" 
+        style="{{ totalFinalPrice > 10 ? 'background-color: #f5d157; color: #333;' : 'background-color: rgba(69, 68, 69, 0.95); color: #aaa;' }}"
+      >
+        <text>{{totalFinalPrice > 10 ? "去结算" : "¥10起送"}}</text>
       </view>
     </view>
   </view>
