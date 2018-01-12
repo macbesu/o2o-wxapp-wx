@@ -111,7 +111,7 @@ Page({
           });
         } else {
           self.setData({ 
-            errorText: res.data.message,
+            errorText: res.data.errmsg,
             showErrorText: true,
           });
         }

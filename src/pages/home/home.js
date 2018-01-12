@@ -20,7 +20,7 @@ Page({
     currentCategory: '(全部)',
     showHomeOrders: false,
   },
-  onLoad: function() {
+  onShow: function() {
     wx.showShareMenu({
       withShareTicket: true
     });
@@ -33,9 +33,6 @@ Page({
     wx.request({
       url: URL + 'categories',
       method: 'GET',
-      header: {
-        'Authorization': token,
-      },
       success: function(res) {
         if (res.statusCode === 200 ){
           const defaultCategory = [{
@@ -62,9 +59,6 @@ Page({
     wx.request({
       url: `${URL}foods/category=${self.data.categoryFilter?self.data.categoryFilter:'*'}&foodName=${self.data.foodFilter?self.data.foodFilter:'*'}`,
       method: 'GET',
-      header: {
-        'Authorization': token,
-      },
       success: function(res) {
         if (res.statusCode === 200 ){
           wx.hideLoading();
@@ -161,8 +155,9 @@ Page({
     });
   },
   handleBuy: function() {
-    const { cart, totalFinalPrice } = this.data;
-    const { _id, token } = app.globalData;
+    const { cart, totalBeforePrice, totalFinalPrice } = this.data;
+    const { _id, token, address } = app.globalData;
+    const self = this;
     wx.request({
       url: URL + 'orders',
       method: 'POST',
@@ -173,12 +168,23 @@ Page({
         foods: cart,
         user: _id,
         totalPrice: totalFinalPrice,
+        address: address,
+        benefit: self.handleFloatFixed(totalBeforePrice - totalFinalPrice),
       },
       success: function(res) {
         if (res.statusCode === 201 ){
-          wx.hideLoading();
-          wx.switchTab({
-            url: '/pages/orders/orders'
+          self.setData({
+            orders: {},
+            cart: [],
+            ordersCount: 0,
+            categoriesIndex: 0,
+            totalBeforePrice: 0,
+            totalFinalPrice: 0,
+          }, () => {
+            wx.switchTab({
+              url: '/pages/orders/orders'
+            });
+            wx.hideLoading();
           });
         } else {
           wx.hideLoading();

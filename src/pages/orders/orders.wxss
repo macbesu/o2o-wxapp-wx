@@ -1,0 +1,93 @@
+page {
+  background-color: #eee;
+}
+
+.orders {
+  padding: 0 30rpx 40rpx;
+}
+
+.orders-title {
+  text-align: center;
+  color: #999;
+  font-size: 30rpx;
+  margin: 40rpx 0;
+}
+
+.orders-box .weui-form-preview {
+  margin-bottom: 80rpx;
+}
+
+.orders-box .weui-form-preview:after {
+  border-bottom: none;
+}
+
+.orders-box .nothing{
+  text-align: center;
+  color: #999;
+  font-size: 30rpx;
+  margin-top: 60rpx;
+}
+
+.orders-box .weui-form-preview__value {
+  color: #444;
+}
+
+.orders-box .orders-food-item {
+
+}
+
+.orders-box .orders-food-item view {
+  display: inline-block;
+  text-align: left;
+}
+
+.orders-box .orders-food-item .orders-food-item-name {
+  width: 60%;
+  margin-right: 10%;
+  text-align: right;
+}
+
+.orders-box .orders-food-item .orders-food-item-price {
+  width: 20%;
+}
+
+.orders-box .orders-food-item .orders-food-item-count {
+  width: 10%;
+}
+
+.orders-box .weui-form-preview__ft {
+  background:#fff;
+  padding-bottom: 20rpx;
+  border-bottom: none;
+  background-image:-webkit-gradient(linear,50% 0,0 100%,
+      from(transparent),
+      color-stop(.5,transparent),
+      color-stop(.5,#eee),
+      to(#eee)    
+    ),
+    -webkit-gradient(linear,50% 0,100% 100%,
+      from(transparent),
+      color-stop(.5,transparent),
+      color-stop(.5,#eee),
+      to(#eee)                                            
+    );
+  background-image:-moz-linear-gradient(50% 0 -45deg,
+      transparent,
+      transparent 50%,
+      #eee 50%,
+      #eee                                            
+    ),-moz-linear-gradient(50% 0 -135deg,
+      transparent,
+      transparent 50%,
+      #eee 50%,
+      #eee                                            
+    );                                
+  background-size:30rpx 15rpx;
+  background-repeat:repeat-x;
+  background-position:0 100%;   
+}
+
+
+
+
+

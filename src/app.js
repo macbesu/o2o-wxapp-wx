@@ -40,6 +40,7 @@ App({
   globalData: {
     userInfo: null,
     _id: null,
+    address: null,
     token: null,
   },
 })
