@@ -258,6 +258,10 @@
   font-size: 24rpx;
 }
 
+.home-orders .home-orders-content {
+  max-height: 410rpx;
+}
+
 .home-orders .home-orders-item {
   height: 48rpx;
   line-height: 48rpx;

@@ -147,7 +147,7 @@ Page({
       totalBeforePrice += orders[key].count * orders[key].price;
       totalFinalPrice += orders[key].count * orders[key].newprice;
       cart.push({
-        _id: key,
+        foodId: key,
         foodName: orders[key].name,
         count: orders[key].count,
         totalWithCoupon: orders[key].count * orders[key].newprice,
@@ -158,6 +158,35 @@ Page({
       cart,
       totalBeforePrice: this.handleFloatFixed(totalBeforePrice),
       totalFinalPrice: this.handleFloatFixed(totalFinalPrice),
+    });
+  },
+  handleBuy: function() {
+    const { cart, totalFinalPrice } = this.data;
+    const { _id, token } = app.globalData;
+    wx.request({
+      url: URL + 'orders',
+      method: 'POST',
+      header: {
+        'Authorization': token,
+      },
+      data: {
+        foods: cart,
+        user: _id,
+        totalPrice: totalFinalPrice,
+      },
+      success: function(res) {
+        if (res.statusCode === 201 ){
+          wx.hideLoading();
+          wx.switchTab({
+            url: '/pages/orders/orders'
+          });
+        } else {
+          wx.hideLoading();
+        }
+      },
+      fail: function(e) {
+        wx.hideLoading();
+      },
     });
   },
   handleShowCart: function() {
