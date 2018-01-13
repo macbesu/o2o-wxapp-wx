@@ -87,6 +87,10 @@ page {
   background-position:0 100%;   
 }
 
+.orders-box .weui-form-preview__ft .weui-form-preview__btn {
+  color: #999;
+}
+
 
 
 

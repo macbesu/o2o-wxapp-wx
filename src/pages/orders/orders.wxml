@@ -45,6 +45,9 @@
           <view 
             class="weui-form-preview__btn weui-form-preview__btn_primary" 
             hover-class="weui-form-preview__btn_active" 
+            bindtap="{{ order.status === 0 ? 'cancelOrder' : null }}"
+            data-orderid="{{order._id}}"
+            style="color: {{ order.status === 0 ? '#0bb20c' : '#999'}}"
           >
             {{ order.statusBtn }}
           </view>

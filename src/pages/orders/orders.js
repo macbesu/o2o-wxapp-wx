@@ -47,4 +47,29 @@ Page({
       },
     });
   },
+  cancelOrder: function(e) {
+    const self = this;
+    const { token } = app.globalData;
+    const orderId = e.target.dataset.orderid;
+    wx.request({
+      url: URL + 'orders/' + orderId,
+      method: 'DELETE',
+      header: {
+        'Authorization': token,
+      },
+      success: function(res) {
+        if (res.statusCode === 200 ){
+          wx.showToast({
+            title: '取消订单成功',
+            icon: 'success',
+            duration: 2000
+          });
+          self.getOrders();
+        }
+      },
+      fail: function(e) {
+        wx.hideLoading();
+      },
+    });
+  },
 })
