@@ -43,7 +43,7 @@ page {
 
 .orders-box .orders-food-item .orders-food-item-name {
   width: 60%;
-  margin-right: 10%;
+  margin-right: 5%;
   text-align: right;
 }
 
@@ -52,7 +52,8 @@ page {
 }
 
 .orders-box .orders-food-item .orders-food-item-count {
-  width: 10%;
+  width: 15%;
+  text-align: right;
 }
 
 .orders-box .weui-form-preview__ft {

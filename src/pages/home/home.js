@@ -156,7 +156,7 @@ Page({
   },
   handleBuy: function() {
     const { cart, totalBeforePrice, totalFinalPrice } = this.data;
-    const { _id, token, address } = app.globalData;
+    const { _id, token, phone, address } = app.globalData;
     const self = this;
     wx.request({
       url: URL + 'orders',
@@ -168,6 +168,7 @@ Page({
         foods: cart,
         user: _id,
         totalPrice: totalFinalPrice,
+        phone: phone,
         address: address,
         benefit: self.handleFloatFixed(totalBeforePrice - totalFinalPrice),
       },

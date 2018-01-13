@@ -22,6 +22,7 @@ Page({
       key: 'appUser',
       success: function(res) {
         app.globalData._id = res.data._id;
+        app.globalData.phone = res.data.phone;
         app.globalData.address = res.data.address;
         app.globalData.token = res.data.token;
         wx.switchTab({
@@ -69,11 +70,13 @@ Page({
                 key: "appUser",
                 data: {
                   _id: res.data._id,
+                  phone: res.data.phone,
                   address: res.data.address,
                   token: res.data.token,
                 },
                 success: function() {
                   app.globalData._id = res.data._id;
+                  app.globalData.phone = res.data.phone;
                   app.globalData.address = res.data.address;
                   app.globalData.token = res.data.token;
                   wx.switchTab({
