@@ -28,7 +28,7 @@
             <view wx:for="{{order.foods}}" class="orders-food-item" wx:for-item="food" wx:key="{{food.foodId}}">
               <view class="orders-food-item-name">{{food.foodName}}</view> 
               <view class="orders-food-item-price">¥ {{food.totalWithCoupon}}</view>
-              <view class="orders-food-item-count">{{food.count}}个</view>
+              <view class="orders-food-item-count">{{food.count}}份</view>
             </view>
           </view>
         </view>
