@@ -53,9 +53,12 @@ Page({
     const orderId = e.target.dataset.orderid;
     wx.request({
       url: URL + 'orders/' + orderId,
-      method: 'DELETE',
+      method: 'POST',
       header: {
         'Authorization': token,
+      },
+      data: {
+        status: 3,
       },
       success: function(res) {
         if (res.statusCode === 200 ){
