@@ -14,7 +14,7 @@ Open WeChat Developer Toolkit and run this project ↓
 <img src="http://oxv4hyzep.bkt.clouddn.com/WX20180121-145525@2x.png" width="60%" />
 
 
-Or scan this QR code by WeChat ↓
+Or scan this QR code by WeChat ↓ (but now it stops working)
 
 <img src="http://oxv4hyzep.bkt.clouddn.com/gh_4359050c98d2_430.jpg" width="20%" />
 
