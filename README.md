@@ -29,7 +29,7 @@ Something wrong with my server.. So I can just show the effect by pictures as be
 
 [https://github.com/ivanwarke/o2o-wxapp-bk](https://github.com/ivanwarke/o2o-wxapp-bk)
 
-## Test data
+## Test Data
 [https://github.com/ivanwarke/o2o-wxapp-bk/tree/master/mongo](https://github.com/ivanwarke/o2o-wxapp-bk/tree/master/mongo)
 
 ## License
