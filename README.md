@@ -1,6 +1,6 @@
 # o2o-wxapp-wx
 
-🍕 a full-stack application about ordering the meal ( WeChat application section ).
+🍕 a full-stack application of ordering the meal ( WeChat application section ).
 
 ## Installation
 
